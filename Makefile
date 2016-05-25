@@ -1,12 +1,16 @@
-.PHONY: all test
+.PHONY: all asm test
 
 GCJ = gcj
-GCJFLAGS = --main=Test -g -O2 -Wall -Wpedantic -pthread
+GCJFLAGS = -g -O2 -Wall -Wpedantic
+LDFLAGS = -pthread
 
 all: test
+
+asm: CPUID.cc
+	$(GCJ) $(GCJFLAGS) -c $^
 
 test: Test
 	./$^
 
 Test: CPUID.cc CPUID.java Test.java
-	$(GCJ) $(GCJFLAGS) $^ -o $@
+	$(GCJ) $(GCJFLAGS) --main=Test $^ -o $@
