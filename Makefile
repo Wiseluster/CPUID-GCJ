@@ -7,10 +7,10 @@ LDFLAGS = -pthread
 all: test
 
 asm: CPUID.cc
-	$(GCJ) $(GCJFLAGS) -c $^
+	$(GCJ) $(GCJFLAGS) -S $^
 
 test: Test
 	./$^
 
 Test: CPUID.cc CPUID.java Test.java
-	$(GCJ) $(GCJFLAGS) --main=Test $^ -o $@
+	$(GCJ) $(GCJFLAGS) $(LDFLAGS) --main=Test $^ -o $@
