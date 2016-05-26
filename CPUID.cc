@@ -60,5 +60,5 @@ jstring CPUID::nativeGetBrandString()
 		: "%eax", "%ecx", "%edx", "%ebx"
 	);
 
-	return JvNewStringLatin1(brand);
+	return _Jv_NewStringLatin1(brand, __builtin_strlen(brand));
 }
